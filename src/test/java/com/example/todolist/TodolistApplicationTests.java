@@ -48,14 +48,14 @@ public class TodolistApplicationTests {
 
 	@Test
 	public void should_update_todo_done_status_when_updateToDo_given_id_and_done_status() throws Exception {
-		String content = "{\"done\": false}";
+		String content = "{\"text\": \"update test\", \"done\": false}";
 		mockMvc.perform(MockMvcRequestBuilders.put("/todos/{id}", "1")
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)
 						.content(content))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id").value("1"))
-				.andExpect(jsonPath("$.text").value("first to do item"))
+				.andExpect(jsonPath("$.text").value("update test"))
 				.andExpect(jsonPath("$.done").value(false));
 	}
 
