@@ -1,7 +1,7 @@
 package com.example.todolist.service;
 
+import com.example.todolist.exception.TodoNotFoundException;
 import com.example.todolist.model.entity.Todo;
-import com.example.todolist.model.request.TodoRequest;
 import com.example.todolist.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +18,13 @@ public class TodoService {
     }
 
     public Todo updateToDoStatus(String id, Todo todoUpdate) {
-        Todo todo = todoRepository.findById(id).orElse(null);
+        Todo todo = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
         todo.setDone(todoUpdate.getDone());
         return todoRepository.save(todo);
     }
 
     public Todo deleteTodo(String id) {
-        Todo toBeRemoved = todoRepository.findById(id).orElse(null);
+        Todo toBeRemoved = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
         todoRepository.deleteById(id);
         return toBeRemoved;
     }
