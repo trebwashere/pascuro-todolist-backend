@@ -28,4 +28,8 @@ public class TodoService {
         todoRepository.deleteById(id);
         return toBeRemoved;
     }
+
+    public Todo addTodo(Todo todoToAdd) {
+        return todoRepository.save(todoToAdd);
+    }
 }
