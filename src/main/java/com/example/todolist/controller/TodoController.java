@@ -30,4 +30,9 @@ public class TodoController {
     public TodoResponse updateTodoStatus(@PathVariable String id, @RequestBody TodoRequest todoRequestUpdate) {
         return todoMapper.toResponse(todoService.updateToDoStatus(id, todoMapper.toEntity(todoRequestUpdate)));
     }
+
+    @DeleteMapping(path = "/todos/{id}")
+    public TodoResponse deleteTodo(@PathVariable String id) {
+        return todoMapper.toResponse(todoService.deleteTodo(id));
+    }
 }

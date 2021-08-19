@@ -22,4 +22,10 @@ public class TodoService {
         todo.setDone(todoUpdate.getDone());
         return todoRepository.save(todo);
     }
+
+    public Todo deleteTodo(String id) {
+        Todo toBeRemoved = todoRepository.findById(id).orElse(null);
+        todoRepository.deleteById(id);
+        return toBeRemoved;
+    }
 }
