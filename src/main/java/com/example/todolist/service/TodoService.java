@@ -1,6 +1,7 @@
 package com.example.todolist.service;
 
 import com.example.todolist.model.entity.Todo;
+import com.example.todolist.model.request.TodoRequest;
 import com.example.todolist.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,11 @@ public class TodoService {
 
     public List<Todo> getAllTodos() {
         return todoRepository.findAll();
+    }
+
+    public Todo updateToDoStatus(String id, Todo todoUpdate) {
+        Todo todo = todoRepository.findById(id).orElse(null);
+        todo.setDone(todoUpdate.getDone());
+        return todoRepository.save(todo);
     }
 }
